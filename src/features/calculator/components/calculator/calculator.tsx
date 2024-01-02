@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CalculatorKey from "./calculator-key";
 import styles from "./calculator.module.css";
 
 const symbols = [
@@ -27,13 +28,11 @@ export default function Calculator() {
       {symbols.map((row, rowIndex) => (
         <div className={styles.calculatorRow} key={rowIndex}>
           {row.map((symbol, symbolIndex) => (
-            <button
-              className={styles.calculatorKey}
-              onClick={handleSymbolClick(symbol.toString())}
+            <CalculatorKey
+              symbol={symbol.toString()}
+              handleSymbolClick={handleSymbolClick}
               key={symbolIndex}
-            >
-              {symbol}
-            </button>
+            />
           ))}
         </div>
       ))}
