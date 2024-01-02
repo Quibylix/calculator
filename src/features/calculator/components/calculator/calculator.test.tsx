@@ -66,4 +66,15 @@ describe("calculator", () => {
 
     expect(screen.getByLabelText("Selected operator").textContent).toBe("-");
   });
+
+  it("clicking a number after an operator should display the number", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "3" }).click());
+    act(() => screen.getByRole("button", { name: "+" }).click());
+    act(() => screen.getByRole("button", { name: "4" }).click());
+
+    expect(screen.getByLabelText("Selected number").textContent).toBe("4");
+    expect(screen.getByLabelText("Selected operator").textContent).toBe("+");
+  });
 });

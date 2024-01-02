@@ -29,12 +29,13 @@ const symbols = [
 ];
 
 export default function Calculator() {
-  const [number, setNumber] = useState("0");
+  const [previousNumber, setPreviousNumber] = useState<string | null>(null);
+  const [number, setNumber] = useState<string | null>("0");
   const [operator, setOperator] = useState<string | null>(null);
 
   const handleNumberClick = (symbol: string) => () => {
     setNumber(displayed => {
-      if (displayed === "0") {
+      if (displayed === null || displayed === "0") {
         return symbol;
       }
 
@@ -44,13 +45,16 @@ export default function Calculator() {
 
   const handleOperatorClick = (operator: string) => () => {
     setOperator(operator);
+
+    setPreviousNumber(number);
+    setNumber(null);
   };
 
   return (
     <div className={styles.calculator} data-testid="calculator">
       <div data-testid="calculator-display" role="status">
         <span role="status" aria-label="Selected number">
-          {number}
+          {number ?? previousNumber}
         </span>
         <span role="status" aria-label="Selected operator">
           {operator}
