@@ -54,7 +54,7 @@ describe("calculator", () => {
     act(() => screen.getByRole("button", { name: "3" }).click());
     act(() => screen.getByRole("button", { name: "+" }).click());
 
-    expect(screen.getByTestId("calculator-display").textContent).toBe("3+");
+    expect(screen.getByLabelText("Selected operator").textContent).toBe("+");
   });
 
   it("clicking on several operators should display the last operator", () => {
@@ -64,6 +64,6 @@ describe("calculator", () => {
     act(() => screen.getByRole("button", { name: "+" }).click());
     act(() => screen.getByRole("button", { name: "-" }).click());
 
-    expect(screen.getByTestId("calculator-display").textContent).toBe("3-");
+    expect(screen.getByLabelText("Selected operator").textContent).toBe("-");
   });
 });

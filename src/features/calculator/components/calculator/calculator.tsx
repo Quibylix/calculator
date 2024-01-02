@@ -48,9 +48,13 @@ export default function Calculator() {
 
   return (
     <div className={styles.calculator} data-testid="calculator">
-      <div data-testid="calculator-display">
-        {number}
-        <span>{operator}</span>
+      <div data-testid="calculator-display" role="status">
+        <span role="status" aria-label="Selected number">
+          {number}
+        </span>
+        <span role="status" aria-label="Selected operator">
+          {operator}
+        </span>
       </div>
       {symbols.map((row, rowIndex) => (
         <div className={styles.calculatorRow} key={rowIndex}>
