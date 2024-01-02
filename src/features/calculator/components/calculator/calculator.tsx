@@ -1,3 +1,5 @@
+import styles from "./calculator.module.css";
+
 const symbols = [
   [7, 8, 9, "/"],
   [4, 5, 6, "×"],
@@ -7,11 +9,13 @@ const symbols = [
 
 export default function Calculator() {
   return (
-    <div data-testid="calculator">
+    <div className={styles.calculator} data-testid="calculator">
       {symbols.map((row, rowIndex) => (
-        <div key={rowIndex}>
+        <div className={styles.calculatorRow} key={rowIndex}>
           {row.map((symbol, symbolIndex) => (
-            <div key={symbolIndex}>{symbol}</div>
+            <div className={styles.calculatorKey} key={symbolIndex}>
+              {symbol}
+            </div>
           ))}
         </div>
       ))}
