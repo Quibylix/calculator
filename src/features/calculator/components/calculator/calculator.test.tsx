@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import Calculator from "./calculator";
 
 describe("calculator", () => {
@@ -9,19 +9,19 @@ describe("calculator", () => {
     screen.getByTestId("calculator");
   });
 
-  it("should display keys with the values 0 to 9", () => {
+  it("should display buttons with the values 0 to 9", () => {
     render(<Calculator />);
 
     for (let i = 0; i < 10; i++) {
-      screen.getByText(i.toString());
+      expect(screen.getByText(i.toString()).nodeName).toBe("BUTTON");
     }
   });
 
-  it("should display keys with the operators +, -, ×, /, =", () => {
+  it("should display buttons with the operators +, -, ×, /, =", () => {
     render(<Calculator />);
 
     ["+", "-", "×", "/", "="].forEach(operator => {
-      screen.getByText(operator);
+      expect(screen.getByText(operator).nodeName).toBe("BUTTON");
     });
   });
 });

@@ -13,9 +13,9 @@ export default function Calculator() {
       {symbols.map((row, rowIndex) => (
         <div className={styles.calculatorRow} key={rowIndex}>
           {row.map((symbol, symbolIndex) => (
-            <div className={styles.calculatorKey} key={symbolIndex}>
+            <button className={styles.calculatorKey} key={symbolIndex}>
               {symbol}
-            </div>
+            </button>
           ))}
         </div>
       ))}
