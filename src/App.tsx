@@ -1,5 +1,10 @@
+import { Calculator } from "@/features/calculator/components";
 import "./App.css";
 
 export default function App() {
-  return <h1>Calculator</h1>;
+  return (
+    <main>
+      <Calculator />
+    </main>
+  );
 }

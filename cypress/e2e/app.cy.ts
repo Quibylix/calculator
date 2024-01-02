@@ -1,5 +1,7 @@
 describe("app test", () => {
-  it("passes", () => {
+  it("shows a calculator", () => {
     cy.visit("/");
+
+    cy.get("[data-testid=calculator]").should("exist");
   });
 });
