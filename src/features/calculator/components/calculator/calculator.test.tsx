@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import Calculator from "./calculator";
 
@@ -13,7 +13,7 @@ describe("calculator", () => {
     render(<Calculator />);
 
     for (let i = 0; i < 10; i++) {
-      expect(screen.getByText(i.toString()).nodeName).toBe("BUTTON");
+      screen.getByRole("button", { name: i.toString() });
     }
   });
 
@@ -23,5 +23,28 @@ describe("calculator", () => {
     ["+", "-", "×", "/", "="].forEach(operator => {
       expect(screen.getByText(operator).nodeName).toBe("BUTTON");
     });
+  });
+
+  it("should display a display with the value 0", () => {
+    render(<Calculator />);
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("0");
+  });
+
+  it("clicking on a number should display the value of the number", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "3" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("3");
+  });
+
+  it("clicking on several numbers should display the value of the numbers", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "3" }).click());
+    act(() => screen.getByRole("button", { name: "4" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("34");
   });
 });
