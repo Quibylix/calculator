@@ -6,7 +6,7 @@ export function useCalculator() {
   const [number, setNumber] = useState<string | null>("0");
   const [operator, setOperator] = useState<string | null>(null);
 
-  const handleNumberClick = (symbol: string) => () => {
+  const handleNumberClick = (symbol: string) => {
     setNumber(displayed => {
       if (displayed === null || displayed === "0") {
         return symbol;
@@ -16,7 +16,7 @@ export function useCalculator() {
     });
   };
 
-  const handleOperatorClick = (newOperator: string) => () => {
+  const handleOperatorClick = (newOperator: string) => {
     if (!number) {
       setOperator(newOperator);
       return;
@@ -36,7 +36,7 @@ export function useCalculator() {
     setOperator(newOperator);
   };
 
-  const handleEqualsClick = () => () => {
+  const handleEqualsClick = () => {
     if (!number) {
       if (operator) setOperator(null);
       return;
@@ -68,7 +68,7 @@ export function useCalculator() {
       case "equals":
         return handleEqualsClick;
       default:
-        return () => () => {};
+        return () => {};
     }
   };
 
