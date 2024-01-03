@@ -1,23 +1,5 @@
 import { useState } from "react";
-
-const calculateResult = (
-  number: string,
-  previousNumber: string,
-  operator: string,
-) => {
-  switch (operator) {
-    case "+":
-      return (parseFloat(previousNumber) + parseFloat(number)).toString();
-    case "-":
-      return (parseFloat(previousNumber) - parseFloat(number)).toString();
-    case "×":
-      return (parseFloat(previousNumber) * parseFloat(number)).toString();
-    case "/":
-      return (parseFloat(previousNumber) / parseFloat(number)).toString();
-    default:
-      return number;
-  }
-};
+import { calculateResult } from "./calculator.helpers";
 
 export function useCalculator() {
   const [previousNumber, setPreviousNumber] = useState<string | null>(null);
