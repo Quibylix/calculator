@@ -1,6 +1,6 @@
-import { useState } from "react";
 import CalculatorKey from "./calculator-key";
 import styles from "./calculator.module.css";
+import { useCalculator } from "./useCalculator.hook";
 
 const symbols = [
   [
@@ -28,82 +28,15 @@ const symbols = [
   ],
 ];
 
-const calculateResult = (
-  number: string,
-  previousNumber: string,
-  operator: string,
-) => {
-  switch (operator) {
-    case "+":
-      return (parseFloat(previousNumber) + parseFloat(number)).toString();
-    case "-":
-      return (parseFloat(previousNumber) - parseFloat(number)).toString();
-    case "×":
-      return (parseFloat(previousNumber) * parseFloat(number)).toString();
-    case "/":
-      return (parseFloat(previousNumber) / parseFloat(number)).toString();
-    default:
-      return number;
-  }
-};
-
 export default function Calculator() {
-  const [previousNumber, setPreviousNumber] = useState<string | null>(null);
-  const [number, setNumber] = useState<string | null>("0");
-  const [operator, setOperator] = useState<string | null>(null);
-
-  const handleNumberClick = (symbol: string) => () => {
-    setNumber(displayed => {
-      if (displayed === null || displayed === "0") {
-        return symbol;
-      }
-
-      return displayed + symbol;
-    });
-  };
-
-  const handleOperatorClick = (newOperator: string) => () => {
-    if (!number) {
-      setOperator(newOperator);
-      return;
-    }
-
-    if (previousNumber && operator) {
-      const result = calculateResult(number, previousNumber, operator);
-
-      setPreviousNumber(result);
-      setNumber(null);
-      setOperator(newOperator);
-      return;
-    }
-
-    setPreviousNumber(number);
-    setNumber(null);
-    setOperator(newOperator);
-  };
-
-  const handleEqualsClick = () => () => {
-    if (!number) {
-      if (operator) setOperator(null);
-      return;
-    }
-
-    if (!operator) {
-      setPreviousNumber(number);
-      setNumber(null);
-      return;
-    }
-
-    if (!previousNumber) {
-      return;
-    }
-
-    const result = calculateResult(number, previousNumber, operator);
-
-    setPreviousNumber(result);
-    setNumber(null);
-    setOperator(null);
-  };
+  const {
+    number,
+    previousNumber,
+    operator,
+    handleEqualsClick,
+    handleNumberClick,
+    handleOperatorClick,
+  } = useCalculator();
 
   return (
     <div className={styles.calculator} data-testid="calculator">
