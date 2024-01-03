@@ -60,16 +60,18 @@ export function useCalculator() {
   };
 
   const handleSymbolClick = (type: string) => {
-    switch (type) {
-      case "number":
-        return handleNumberClick;
-      case "operator":
-        return handleOperatorClick;
-      case "equals":
-        return handleEqualsClick;
-      default:
-        return () => {};
-    }
+    return (symbol: string) => {
+      switch (type) {
+        case "number":
+          return handleNumberClick(symbol);
+        case "operator":
+          return handleOperatorClick(symbol);
+        case "equals":
+          return handleEqualsClick();
+        default:
+          return;
+      }
+    };
   };
 
   return {
