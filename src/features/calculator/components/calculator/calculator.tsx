@@ -4,14 +4,8 @@ import styles from "./calculator.module.css";
 import { useCalculator } from "./useCalculator.hook";
 
 export default function Calculator() {
-  const {
-    number,
-    previousNumber,
-    operator,
-    handleEqualsClick,
-    handleNumberClick,
-    handleOperatorClick,
-  } = useCalculator();
+  const { number, previousNumber, operator, handleSymbolClick } =
+    useCalculator();
 
   return (
     <div className={styles.calculator} data-testid="calculator">
@@ -28,13 +22,7 @@ export default function Calculator() {
           {row.map(({ symbol, type }, symbolIndex) => (
             <CalculatorKey
               symbol={symbol.toString()}
-              handleSymbolClick={
-                type === "number"
-                  ? handleNumberClick
-                  : type === "operator"
-                    ? handleOperatorClick
-                    : handleEqualsClick
-              }
+              handleSymbolClick={handleSymbolClick(type)}
               key={symbolIndex}
             />
           ))}

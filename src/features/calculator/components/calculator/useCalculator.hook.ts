@@ -59,12 +59,23 @@ export function useCalculator() {
     setOperator(null);
   };
 
+  const handleSymbolClick = (type: string) => {
+    switch (type) {
+      case "number":
+        return handleNumberClick;
+      case "operator":
+        return handleOperatorClick;
+      case "equals":
+        return handleEqualsClick;
+      default:
+        return () => () => {};
+    }
+  };
+
   return {
     number,
     previousNumber,
     operator,
-    handleNumberClick,
-    handleOperatorClick,
-    handleEqualsClick,
+    handleSymbolClick,
   };
 }
