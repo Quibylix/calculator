@@ -124,4 +124,16 @@ describe("calculator", () => {
 
     expect(screen.getByTestId("calculator-display").textContent).toBe("5");
   });
+
+  it("clicking on a number, then on an operator, then on a number, and then on an operator should display the result of the first operation and the second operator", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "3" }).click());
+    act(() => screen.getByRole("button", { name: "+" }).click());
+    act(() => screen.getByRole("button", { name: "4" }).click());
+    act(() => screen.getByRole("button", { name: "-" }).click());
+
+    expect(screen.getByLabelText("Selected number").textContent).toBe("7");
+    expect(screen.getByLabelText("Selected operator").textContent).toBe("-");
+  });
 });

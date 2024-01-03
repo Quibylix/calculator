@@ -62,15 +62,24 @@ export default function Calculator() {
     });
   };
 
-  const handleOperatorClick = (operator: string) => () => {
-    setOperator(operator);
-
+  const handleOperatorClick = (newOperator: string) => () => {
     if (!number) {
+      setOperator(newOperator);
+      return;
+    }
+
+    if (previousNumber && operator) {
+      const result = calculateResult(number, previousNumber, operator);
+
+      setPreviousNumber(result);
+      setNumber(null);
+      setOperator(newOperator);
       return;
     }
 
     setPreviousNumber(number);
     setNumber(null);
+    setOperator(newOperator);
   };
 
   const handleEqualsClick = () => () => {
