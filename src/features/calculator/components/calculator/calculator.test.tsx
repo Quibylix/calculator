@@ -78,4 +78,50 @@ describe("calculator", () => {
     expect(screen.getByLabelText("Selected number").textContent).toBe("4");
     expect(screen.getByLabelText("Selected operator").textContent).toBe("+");
   });
+
+  it("clicking on the equals operator should display the result of the operation", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "3" }).click());
+    act(() => screen.getByRole("button", { name: "+" }).click());
+    act(() => screen.getByRole("button", { name: "4" }).click());
+    act(() => screen.getByRole("button", { name: "=" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("7");
+  });
+
+  it("clicking on the equals operator without an operator should display the number", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "3" }).click());
+    act(() => screen.getByRole("button", { name: "=" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("3");
+
+    act(() => screen.getByRole("button", { name: "=" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("3");
+  });
+
+  it("clicking on the equals operator with an operator and only one number should display the number", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "3" }).click());
+    act(() => screen.getByRole("button", { name: "+" }).click());
+    act(() => screen.getByRole("button", { name: "=" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("3");
+    expect(screen.getByLabelText("Selected number").textContent).toBe("3");
+    expect(screen.getByLabelText("Selected operator").textContent).toBe("");
+  });
+
+  it("typing a number after clicking on the equals operator should display the number", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "3" }).click());
+    act(() => screen.getByRole("button", { name: "=" }).click());
+    act(() => screen.getByRole("button", { name: "5" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("5");
+  });
 });

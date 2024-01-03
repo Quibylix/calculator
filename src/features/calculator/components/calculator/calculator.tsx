@@ -28,6 +28,25 @@ const symbols = [
   ],
 ];
 
+const calculateResult = (
+  number: string,
+  previousNumber: string,
+  operator: string,
+) => {
+  switch (operator) {
+    case "+":
+      return (parseFloat(previousNumber) + parseFloat(number)).toString();
+    case "-":
+      return (parseFloat(previousNumber) - parseFloat(number)).toString();
+    case "×":
+      return (parseFloat(previousNumber) * parseFloat(number)).toString();
+    case "/":
+      return (parseFloat(previousNumber) / parseFloat(number)).toString();
+    default:
+      return number;
+  }
+};
+
 export default function Calculator() {
   const [previousNumber, setPreviousNumber] = useState<string | null>(null);
   const [number, setNumber] = useState<string | null>("0");
@@ -54,6 +73,29 @@ export default function Calculator() {
     setNumber(null);
   };
 
+  const handleEqualsClick = () => () => {
+    if (!number) {
+      if (operator) setOperator(null);
+      return;
+    }
+
+    if (!operator) {
+      setPreviousNumber(number);
+      setNumber(null);
+      return;
+    }
+
+    if (!previousNumber) {
+      return;
+    }
+
+    const result = calculateResult(number, previousNumber, operator);
+
+    setPreviousNumber(result);
+    setNumber(null);
+    setOperator(null);
+  };
+
   return (
     <div className={styles.calculator} data-testid="calculator">
       <div data-testid="calculator-display" role="status">
@@ -70,7 +112,11 @@ export default function Calculator() {
             <CalculatorKey
               symbol={symbol.toString()}
               handleSymbolClick={
-                type === "number" ? handleNumberClick : handleOperatorClick
+                type === "number"
+                  ? handleNumberClick
+                  : type === "operator"
+                    ? handleOperatorClick
+                    : handleEqualsClick
               }
               key={symbolIndex}
             />
