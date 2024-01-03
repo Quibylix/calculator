@@ -1,22 +1,30 @@
 import { useState } from "react";
 import { calculateResult } from "../helpers/calculate-results.helper";
+import {
+  NumberLiteral,
+  Operator,
+  SymbolLiteral,
+  SymbolType,
+} from "../types/symbols.type";
 
 export function useCalculator() {
-  const [previousNumber, setPreviousNumber] = useState<string | null>(null);
-  const [number, setNumber] = useState<string | null>("0");
-  const [operator, setOperator] = useState<string | null>(null);
+  const [previousNumber, setPreviousNumber] = useState<NumberLiteral | null>(
+    null,
+  );
+  const [number, setNumber] = useState<NumberLiteral | null>("0");
+  const [operator, setOperator] = useState<Operator | null>(null);
 
-  const handleNumberClick = (symbol: string) => {
+  const handleNumberClick = (symbol: NumberLiteral) => {
     setNumber(displayed => {
       if (displayed === null || displayed === "0") {
         return symbol;
       }
 
-      return displayed + symbol;
+      return (displayed + symbol) as NumberLiteral;
     });
   };
 
-  const handleOperatorClick = (newOperator: string) => {
+  const handleOperatorClick = (newOperator: Operator) => {
     if (!number) {
       setOperator(newOperator);
       return;
@@ -59,17 +67,15 @@ export function useCalculator() {
     setOperator(null);
   };
 
-  const handleSymbolClick = (type: string) => {
-    return (symbol: string) => {
+  const handleSymbolClick = (type: SymbolType) => {
+    return (symbol: SymbolLiteral) => {
       switch (type) {
         case "number":
-          return handleNumberClick(symbol);
+          return handleNumberClick(symbol as NumberLiteral);
         case "operator":
-          return handleOperatorClick(symbol);
+          return handleOperatorClick(symbol as Operator);
         case "equals":
           return handleEqualsClick();
-        default:
-          return;
       }
     };
   };

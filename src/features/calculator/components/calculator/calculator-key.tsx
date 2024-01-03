@@ -1,8 +1,9 @@
 import styles from "./calculator.module.css";
+import { SymbolLiteral } from "./types/symbols.type";
 
 type CalculatorKeyProps = {
-  symbol: string;
-  handleSymbolClick: (symbol: string) => void;
+  symbol: SymbolLiteral;
+  handleSymbolClick: (symbol: SymbolLiteral) => void;
 };
 
 export default function CalculatorKey({

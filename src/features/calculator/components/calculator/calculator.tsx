@@ -21,7 +21,7 @@ export default function Calculator() {
         <div className={styles.calculatorRow} key={rowIndex}>
           {row.map(({ symbol, type }, symbolIndex) => (
             <CalculatorKey
-              symbol={symbol.toString()}
+              symbol={symbol}
               handleSymbolClick={handleSymbolClick(type)}
               key={symbolIndex}
             />
