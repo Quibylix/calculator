@@ -46,6 +46,10 @@ export default function Calculator() {
   const handleOperatorClick = (operator: string) => () => {
     setOperator(operator);
 
+    if (!number) {
+      return;
+    }
+
     setPreviousNumber(number);
     setNumber(null);
   };

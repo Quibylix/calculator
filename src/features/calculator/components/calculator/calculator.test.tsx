@@ -64,6 +64,7 @@ describe("calculator", () => {
     act(() => screen.getByRole("button", { name: "+" }).click());
     act(() => screen.getByRole("button", { name: "-" }).click());
 
+    expect(screen.getByLabelText("Selected number").textContent).toBe("3");
     expect(screen.getByLabelText("Selected operator").textContent).toBe("-");
   });
 
