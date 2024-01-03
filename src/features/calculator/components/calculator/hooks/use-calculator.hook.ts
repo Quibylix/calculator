@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { calculateResult } from "./calculator.helpers";
+import { calculateResult } from "../helpers/calculate-results.helper";
 
 export function useCalculator() {
   const [previousNumber, setPreviousNumber] = useState<string | null>(null);

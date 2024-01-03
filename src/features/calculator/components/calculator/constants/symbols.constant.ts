@@ -1,4 +1,4 @@
-export const symbols = [
+export const SYMBOLS = [
   [
     { symbol: "7", type: "number" },
     { symbol: "8", type: "number" },
@@ -22,4 +22,4 @@ export const symbols = [
     { symbol: "=", type: "equals" },
     { symbol: "+", type: "operator" },
   ],
-];
+] as const;

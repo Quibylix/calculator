@@ -1,7 +1,7 @@
 import CalculatorKey from "./calculator-key";
-import { symbols } from "./calculator.constants";
 import styles from "./calculator.module.css";
-import { useCalculator } from "./useCalculator.hook";
+import { SYMBOLS } from "./constants/symbols.constant";
+import { useCalculator } from "./hooks/use-calculator.hook";
 
 export default function Calculator() {
   const { number, previousNumber, operator, handleSymbolClick } =
@@ -17,7 +17,7 @@ export default function Calculator() {
           {operator}
         </span>
       </div>
-      {symbols.map((row, rowIndex) => (
+      {SYMBOLS.map((row, rowIndex) => (
         <div className={styles.calculatorRow} key={rowIndex}>
           {row.map(({ symbol, type }, symbolIndex) => (
             <CalculatorKey
