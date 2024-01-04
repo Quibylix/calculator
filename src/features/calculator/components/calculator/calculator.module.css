@@ -27,3 +27,24 @@
 .calculatorKey:hover {
   background-color: #eee;
 }
+
+.display {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 4rem;
+  padding: 0 1rem 0 3rem;
+  font-size: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+.operator {
+  position: absolute;
+  top: 0;
+  left: 0.6rem;
+  font-size: 1.5rem;
+}

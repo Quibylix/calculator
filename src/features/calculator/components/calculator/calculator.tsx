@@ -9,11 +9,19 @@ export default function Calculator() {
 
   return (
     <div className={styles.calculator} data-testid="calculator">
-      <div data-testid="calculator-display" role="status">
+      <div
+        className={styles.display}
+        data-testid="calculator-display"
+        role="status"
+      >
         <span role="status" aria-label="Selected number">
           {number ?? previousNumber}
         </span>
-        <span role="status" aria-label="Selected operator">
+        <span
+          className={styles.operator}
+          role="status"
+          aria-label="Selected operator"
+        >
           {operator}
         </span>
       </div>
