@@ -22,5 +22,9 @@ export const calculateResult = (
       return (
         parseFloat(previousNumber) / parseFloat(number)
       ).toString() as NumberLiteral;
+    case "%":
+      return (
+        parseFloat(previousNumber) % parseFloat(number)
+      ).toString() as NumberLiteral;
   }
 };

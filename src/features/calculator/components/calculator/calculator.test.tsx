@@ -147,4 +147,15 @@ describe("calculator", () => {
 
     expect(screen.getByTestId("calculator-display").textContent).toBe("0");
   });
+
+  it("the modulo operator should return the modulo of the two numbers", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "8" }).click());
+    act(() => screen.getByRole("button", { name: "%" }).click());
+    act(() => screen.getByRole("button", { name: "3" }).click());
+    act(() => screen.getByRole("button", { name: "=" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("2");
+  });
 });

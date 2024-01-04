@@ -1,5 +1,8 @@
 export const SYMBOLS = [
-  [{ symbol: "AC", type: "clear" }],
+  [
+    { symbol: "AC", type: "clear" },
+    { symbol: "%", type: "operator" },
+  ],
   [
     { symbol: "7", type: "number" },
     { symbol: "8", type: "number" },
