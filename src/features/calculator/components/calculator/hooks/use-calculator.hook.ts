@@ -67,6 +67,12 @@ export function useCalculator() {
     setOperator(null);
   };
 
+  const handleClearClick = () => {
+    setPreviousNumber(null);
+    setNumber("0");
+    setOperator(null);
+  };
+
   const handleSymbolClick = (type: SymbolType) => {
     return (symbol: SymbolLiteral) => {
       switch (type) {
@@ -76,6 +82,8 @@ export function useCalculator() {
           return handleOperatorClick(symbol as Operator);
         case "equals":
           return handleEqualsClick();
+        case "clear":
+          return handleClearClick();
       }
     };
   };

@@ -136,4 +136,15 @@ describe("calculator", () => {
     expect(screen.getByLabelText("Selected number").textContent).toBe("7");
     expect(screen.getByLabelText("Selected operator").textContent).toBe("-");
   });
+
+  it("clicking on the clear button should reset the calculator", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "3" }).click());
+    act(() => screen.getByRole("button", { name: "+" }).click());
+    act(() => screen.getByRole("button", { name: "4" }).click());
+    act(() => screen.getByRole("button", { name: "AC" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("0");
+  });
 });
