@@ -158,4 +158,43 @@ describe("calculator", () => {
 
     expect(screen.getByTestId("calculator-display").textContent).toBe("2");
   });
+
+  it("clicking on the switch sign button if the number is positive should switch the sign of the number", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "8" }).click());
+    act(() => screen.getByRole("button", { name: "+/-" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("-8");
+  });
+
+  it("clicking on the switch sign button if the number is negative should switch the sign of the number", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "8" }).click());
+    act(() => screen.getByRole("button", { name: "+/-" }).click());
+    act(() => screen.getByRole("button", { name: "+/-" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("8");
+  });
+
+  it("clicking on the switch sign button if the number is zero should not change the number", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "+/-" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("0");
+  });
+
+  it("clicking on the switch sign button after an operation should switch the sign of the result of the operation", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "3" }).click());
+    act(() => screen.getByRole("button", { name: "-" }).click());
+    act(() => screen.getByRole("button", { name: "8" }).click());
+    act(() => screen.getByRole("button", { name: "=" }).click());
+    act(() => screen.getByRole("button", { name: "+/-" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("5");
+  });
 });

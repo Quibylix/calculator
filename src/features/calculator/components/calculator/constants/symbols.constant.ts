@@ -2,6 +2,7 @@ export const SYMBOLS = [
   [
     { symbol: "AC", type: "clear" },
     { symbol: "%", type: "operator" },
+    { symbol: "+/-", type: "switchSign" },
   ],
   [
     { symbol: "7", type: "number" },

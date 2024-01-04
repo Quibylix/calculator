@@ -1,6 +1,17 @@
-export type SymbolType = "number" | "operator" | "equals" | "clear";
+export type SymbolType =
+  | "number"
+  | "operator"
+  | "equals"
+  | "clear"
+  | "switchSign";
 export type Operator = "+" | "-" | "×" | "/" | "%";
 export type NumberLiteral = `${number}`;
 export type Equals = "=";
 export type Clear = "AC";
-export type SymbolLiteral = NumberLiteral | Operator | Equals | Clear;
+export type SwitchSign = "+/-";
+export type SymbolLiteral =
+  | NumberLiteral
+  | Operator
+  | Equals
+  | Clear
+  | SwitchSign;

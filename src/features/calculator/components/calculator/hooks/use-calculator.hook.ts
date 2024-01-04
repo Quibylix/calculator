@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { calculateResult } from "../helpers/calculate-results.helper";
+import { switchSign } from "../helpers/switch-sign.helper";
 import {
   NumberLiteral,
   Operator,
@@ -73,6 +74,18 @@ export function useCalculator() {
     setOperator(null);
   };
 
+  const handleSwitchSignClick = () => {
+    if (!number) {
+      if (previousNumber) {
+        setPreviousNumber(switchSign(previousNumber));
+      }
+
+      return;
+    }
+
+    setNumber(switchSign(number));
+  };
+
   const handleSymbolClick = (type: SymbolType) => {
     return (symbol: SymbolLiteral) => {
       switch (type) {
@@ -84,6 +97,8 @@ export function useCalculator() {
           return handleEqualsClick();
         case "clear":
           return handleClearClick();
+        case "switchSign":
+          return handleSwitchSignClick();
       }
     };
   };
