@@ -228,4 +228,18 @@ describe("calculator", () => {
 
     expect(screen.getByTestId("calculator-display").textContent).toBe("0.");
   });
+
+  it("should use a fixed number of decimals when working with decimal numbers to avoid float point precision issues", () => {
+    render(<Calculator />);
+
+    // 0.3 * 3 = 0.8999999999999999 in Javascript for the float point precision
+    act(() => screen.getByRole("button", { name: "0" }).click());
+    act(() => screen.getByRole("button", { name: "." }).click());
+    act(() => screen.getByRole("button", { name: "3" }).click());
+    act(() => screen.getByRole("button", { name: "×" }).click());
+    act(() => screen.getByRole("button", { name: "3" }).click());
+    act(() => screen.getByRole("button", { name: "=" }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("0.9");
+  });
 });
