@@ -24,6 +24,7 @@ export const SYMBOLS = [
   ],
   [
     { symbol: "0", type: "number" },
+    { symbol: ".", type: "decimal" },
     { symbol: "=", type: "equals" },
     { symbol: "+", type: "operator" },
   ],

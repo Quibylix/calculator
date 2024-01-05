@@ -197,4 +197,35 @@ describe("calculator", () => {
 
     expect(screen.getByTestId("calculator-display").textContent).toBe("5");
   });
+
+  it("clicking on the decimal point button should display a decimal point", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "1" }).click());
+    act(() => screen.getByRole("button", { name: "." }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("1.");
+  });
+
+  it("clicking on the decimal point button if the number already has a decimal point should not change the number", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "1" }).click());
+    act(() => screen.getByRole("button", { name: "." }).click());
+    act(() => screen.getByRole("button", { name: "." }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("1.");
+  });
+
+  it("clicking on the decimal point button after an operation should display a decimal point", () => {
+    render(<Calculator />);
+
+    act(() => screen.getByRole("button", { name: "1" }).click());
+    act(() => screen.getByRole("button", { name: "+" }).click());
+    act(() => screen.getByRole("button", { name: "2" }).click());
+    act(() => screen.getByRole("button", { name: "=" }).click());
+    act(() => screen.getByRole("button", { name: "." }).click());
+
+    expect(screen.getByTestId("calculator-display").textContent).toBe("0.");
+  });
 });

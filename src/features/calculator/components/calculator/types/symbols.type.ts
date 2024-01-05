@@ -3,15 +3,18 @@ export type SymbolType =
   | "operator"
   | "equals"
   | "clear"
-  | "switchSign";
+  | "switchSign"
+  | "decimal";
 export type Operator = "+" | "-" | "×" | "/" | "%";
 export type NumberLiteral = `${number}`;
 export type Equals = "=";
 export type Clear = "AC";
 export type SwitchSign = "+/-";
+export type Decimal = ".";
 export type SymbolLiteral =
   | NumberLiteral
   | Operator
   | Equals
   | Clear
-  | SwitchSign;
+  | SwitchSign
+  | Decimal;

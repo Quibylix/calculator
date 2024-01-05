@@ -86,6 +86,19 @@ export function useCalculator() {
     setNumber(switchSign(number));
   };
 
+  const handleDecimalClick = () => {
+    if (!number) {
+      setNumber("0.");
+      return;
+    }
+
+    if (number.includes(".")) {
+      return;
+    }
+
+    setNumber(`${number}.` as NumberLiteral);
+  };
+
   const handleSymbolClick = (type: SymbolType) => {
     return (symbol: SymbolLiteral) => {
       switch (type) {
@@ -99,6 +112,8 @@ export function useCalculator() {
           return handleClearClick();
         case "switchSign":
           return handleSwitchSignClick();
+        case "decimal":
+          return handleDecimalClick();
       }
     };
   };
