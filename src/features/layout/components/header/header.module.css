@@ -1,0 +1,14 @@
+.header {
+  padding-top: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  width: max-content;
+  margin: 0 auto;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #00c9ff 0%, #0090ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
