@@ -25,17 +25,19 @@ export default function Calculator() {
           {operator}
         </span>
       </div>
-      {SYMBOLS.map((row, rowIndex) => (
-        <div className={styles.calculatorRow} key={rowIndex}>
-          {row.map(({ symbol, type }, symbolIndex) => (
-            <CalculatorKey
-              symbol={symbol}
-              handleSymbolClick={handleSymbolClick(type)}
-              key={symbolIndex}
-            />
-          ))}
-        </div>
-      ))}
+      <div className={styles.calculatorKeys}>
+        {SYMBOLS.map((row, rowIndex) => (
+          <div className={styles.calculatorRow} key={rowIndex}>
+            {row.map(({ symbol, type }, symbolIndex) => (
+              <CalculatorKey
+                symbol={symbol}
+                handleSymbolClick={handleSymbolClick(type)}
+                key={symbolIndex}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
